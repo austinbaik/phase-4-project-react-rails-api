@@ -14,7 +14,7 @@ function App() {
         {user ? (
           <Switch>
             <Route path="/">
-              <Home user={user} />
+              {/* <Home user={user} /> */}
             </Route>
           </Switch>
         ) : (
