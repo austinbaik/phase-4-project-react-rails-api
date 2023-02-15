@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import Home from "./Home";
 
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
@@ -7,22 +8,30 @@ import { Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <NavBar user={user} setUser={setUser} />
+      <main>
+        {user ? (
+          <Switch>
+            <Route path="/">
+              <Home user={user} />
+            </Route>
+          </Switch>
+        ) : (
+          <Switch>
+            <Route path="/signup">
+              <SignUp setUser={setUser} />
+            </Route>
+            <Route path="/login">
+              <Login setUser={setUser} />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        )}
+      </main>
+    </>
   );
 }
 
