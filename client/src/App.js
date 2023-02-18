@@ -1,38 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import {
+  
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import SignUp from "./SignUp";
+import Login from "./Login";
+import NavBar from "./NavBar";
 import Home from "./Home";
 
-import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
-
-
 function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    // auto-login
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
+
   return (
     <>
       <NavBar user={user} setUser={setUser} />
       <main>
-        {user ? (
-          <Switch>
-            <Route path="/">
-              {/* <Home user={user} /> */}
-            </Route>
-          </Switch>
-        ) : (
-          <Switch>
-            <Route path="/signup">
-              <SignUp setUser={setUser} />
-            </Route>
-            <Route path="/login">
-              <Login setUser={setUser} />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
-        )}
+
+          <Routes>
+            <Route path="/login" element={<Login setUser={setUser} />} />
+            <Route path="/" element={<Home user={user} />} />
+            <Route path="/signup" element={<SignUp setUser={setUser} />} />
+            {/* <Route
+              exact
+              path="/"
+              element={user ? <Home user={user} /> : <Navigate to={"/signup"}
+              />} /> */}
+          </Routes>
+
       </main>
     </>
   );
 }
 
 export default App;
+
