@@ -1,4 +1,5 @@
 import NewBathroomForm from "./NewBathroomForm";
+import MyToilets from "./MyToilets";
 
 
 function Home({ user }) {
@@ -6,6 +7,13 @@ function Home({ user }) {
       return <div>
         
         <h1>Welcome, {user.username}!</h1>
+
+        <br></br>
+
+        <MyToilets/>
+
+        <br></br>
+
         <NewBathroomForm/>
         </div>
     } else {
