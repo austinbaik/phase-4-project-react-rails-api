@@ -1,8 +1,8 @@
 class BathroomsController < ApplicationController
 
     def create
-        
         bathroom = Bathroom.create(toilet_params)
+        
         if bathroom.valid?
   
           render json: bathroom, status: :created
@@ -10,11 +10,16 @@ class BathroomsController < ApplicationController
           render json: { errors: bathroom.errors.full_messages }, status: :unprocessable_entity
         end
       end
+
+
+      def show 
+        bathrooms = Bathroom.all 
+        render json: bathrooms 
     
       private
     
       def toilet_params
-        params.permit(:address)
+        params.permit(:address, :id_marker, :gender, :floor, :access_info)
         #permit allows for key utilization; require mandates that parameter exists --> bc goes through User Controller
       end
       

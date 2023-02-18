@@ -1,5 +1,7 @@
 import NewBathroomForm from "./NewBathroomForm";
+import AllBathrooms from "./AllBathrooms";
 import MyToilets from "./MyToilets";
+import { Link } from "react-router-dom";
 
 
 function Home({ user }) {
@@ -11,8 +13,14 @@ function Home({ user }) {
         <br></br>
 
         <MyToilets/>
+        {/* show only toilets reviewed by the user */}
 
         <br></br>
+
+        <h2> Discover Other Toilets </h2>
+        {/* link to page with list of ALL bathrooms */}
+
+        
 
         <NewBathroomForm/>
         </div>

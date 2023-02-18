@@ -15,4 +15,6 @@ Rails.application.routes.draw do
 
   post "/submit", to: "bathrooms#create"
 
+  get "/alltoilets", to: "bathrooms#show"
+
 end

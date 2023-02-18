@@ -9,6 +9,7 @@ import SignUp from "./SignUp";
 import Login from "./Login";
 import NavBar from "./NavBar";
 import Home from "./Home";
+import AllBathrooms from "./AllBathrooms";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -36,6 +37,7 @@ function App() {
               path="/"
               element={user ? <Home user={user} /> : <Navigate to={"/signup"}
               />} /> */}
+              <Route path="/alltoilets" element={AllBathrooms}/>
           </Routes>
 
       </main>
