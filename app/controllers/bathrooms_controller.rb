@@ -15,6 +15,7 @@ class BathroomsController < ApplicationController
       def show 
         bathrooms = Bathroom.all 
         render json: bathrooms 
+      end
     
       private
     

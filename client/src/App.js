@@ -37,7 +37,7 @@ function App() {
               path="/"
               element={user ? <Home user={user} /> : <Navigate to={"/signup"}
               />} /> */}
-              <Route path="/alltoilets" element={AllBathrooms}/>
+              <Route path="/alltoilets" element={AllBathrooms} user={user}/>
           </Routes>
 
       </main>

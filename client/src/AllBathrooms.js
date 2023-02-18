@@ -2,28 +2,28 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 
-function AllBathrooms() {
+function AllBathrooms({user}) {
 
     const [allToilets, setToilets] = useState([])
 
-console.log(allToilets)
+    console.log('toilets', allToilets)
 
     useEffect(() => {
         // console.log("brandsArr", brandsArr)
         // console.log("brandsArr.l", brandsArr.length)
 
-        fetch("/alltoilets") 
-        .then((r) => r.json())
-        .then((allToilets) => setToilets(allToilets));
-    }, [])
+        fetch("/alltoilets")
+            .then((r) => r.json())
+            .then((allToilets) => setToilets(allToilets));
+    }, [user])
 
 
     return (
 
         <div>
 
-PLACEHOLDER 
-{/* 
+            PLACEHOLDER
+            {/* 
             <Link to={`/brands/${brand.id}`} brand={brand}>
                 
 
