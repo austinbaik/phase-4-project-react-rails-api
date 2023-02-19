@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import ToiletCard from "./ToiletCard";
 
 
 
@@ -16,7 +17,7 @@ console.log('arr in allbath', allToilets)
             {allToilets.map((toilet)=> {
 
                 return(
-                    <div>  {toilet.id}  </div>
+                    <ToiletCard toilet={toilet}/>
                 )})}
 
 

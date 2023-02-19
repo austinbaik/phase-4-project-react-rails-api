@@ -1,5 +1,5 @@
 import NewBathroomForm from "./NewBathroomForm";
-import AllBathrooms from "./AllBathrooms";
+// import AllBathrooms from "./AllBathrooms";
 import MyToilets from "./MyToilets";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
