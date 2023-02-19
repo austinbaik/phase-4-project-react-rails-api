@@ -6,6 +6,24 @@ import React, { useState, useEffect } from "react";
 
 
 function Home({ user }) {
+
+const validUser = user == true 
+
+const [allToilets, setToilets] = useState([])
+
+console.log('toilets', allToilets)
+
+useEffect(() => {
+    // console.log("brandsArr", brandsArr)
+    // console.log("brandsArr.l", brandsArr.length)
+
+    fetch("/alltoilets")
+        .then((r) => r.json())
+        .then((allToilets) => setToilets(allToilets));
+}, [validUser])
+
+
+
   if (user) {
 
     return <div>

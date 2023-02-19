@@ -4,18 +4,6 @@ import { Link } from "react-router-dom";
 
 function AllBathrooms({user}) {
 
-    const [allToilets, setToilets] = useState([])
-
-    console.log('toilets', allToilets)
-
-    useEffect(() => {
-        // console.log("brandsArr", brandsArr)
-        // console.log("brandsArr.l", brandsArr.length)
-
-        fetch("/alltoilets")
-            .then((r) => r.json())
-            .then((allToilets) => setToilets(allToilets));
-    }, [user])
 
 
     return (
