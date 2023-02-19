@@ -5,24 +5,17 @@ import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
 
-function Home({ user }) {
+function Home({ user, setToilets }) {
 
 const validUser = user == true 
 
-const [allToilets, setToilets] = useState([])
 
-console.log('toilets', allToilets)
 
 useEffect(() => {
-    // console.log("brandsArr", brandsArr)
-    // console.log("brandsArr.l", brandsArr.length)
-
     fetch("/alltoilets")
         .then((r) => r.json())
-        .then((allToilets) => setToilets(allToilets));
+        .then((allToilets) => setToilets(allToilets))
 }, [validUser])
-
-
 
   if (user) {
 
@@ -39,7 +32,7 @@ useEffect(() => {
 
 
       {/* link to page with list of ALL bathrooms */}
-      <Link to={'/alltoilets'}>
+      <Link to={'/alltoilets'} >
         <h2> Discover Other Toilets </h2>
       </Link>
 

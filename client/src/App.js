@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  
   Routes,
   Route,
   Navigate,
@@ -11,8 +10,13 @@ import NavBar from "./NavBar";
 import Home from "./Home";
 import AllBathrooms from "./AllBathrooms";
 
+
+
 function App() {
   const [user, setUser] = useState(null);
+  const [allToilets, setToilets] = useState([])
+
+  console.log('toilets', allToilets)
 
   useEffect(() => {
     // auto-login
@@ -30,14 +34,14 @@ function App() {
 
           <Routes>
             <Route path="/login" element={<Login setUser={setUser} />} />
-            <Route path="/" element={<Home user={user} />} />
+            <Route path="/" element={<Home user={user} setToilets={setToilets}/>} />
             <Route path="/signup" element={<SignUp setUser={setUser} />} />
             {/* <Route
               exact
               path="/"
               element={user ? <Home user={user} /> : <Navigate to={"/signup"}
               />} /> */}
-              <Route path="/alltoilets" element={AllBathrooms} user={user}/>
+              <Route path="/alltoilets" element={AllBathrooms} user={user} />
           </Routes>
 
       </main>

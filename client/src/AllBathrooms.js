@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 
-function AllBathrooms({user}) {
+function AllBathrooms({allToilets}) {
 
-
+console.log('arr in allbath', allToilets)
 
     return (
 
