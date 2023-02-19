@@ -23,3 +23,5 @@ leave the comments, too
 
 
 }
+
+export default ToiletCard

@@ -11,15 +11,15 @@ import Home from "./Home";
 import AllBathrooms from "./AllBathrooms";
 
 
-
 function App() {
   const [user, setUser] = useState(null);
   const [allToilets, setToilets] = useState([])
 
   console.log('toilets', allToilets)
 
+
+    // auto-login:
   useEffect(() => {
-    // auto-login
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
@@ -41,7 +41,7 @@ function App() {
               path="/"
               element={user ? <Home user={user} /> : <Navigate to={"/signup"}
               />} /> */}
-              <Route path="/alltoilets" element={AllBathrooms} user={user} />
+              <Route path="/alltoilets" element={<AllBathrooms user={user} allToilets={allToilets}/>} />
           </Routes>
 
       </main>

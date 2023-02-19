@@ -7,15 +7,13 @@ import React, { useState, useEffect } from "react";
 
 function Home({ user, setToilets }) {
 
-const validUser = user == true 
+  const validUser = user == true
 
-
-
-useEffect(() => {
+  useEffect(() => {
     fetch("/alltoilets")
-        .then((r) => r.json())
-        .then((allToilets) => setToilets(allToilets))
-}, [validUser])
+      .then((r) => r.json())
+      .then((allToilets) => setToilets(allToilets))
+  }, [validUser])
 
   if (user) {
 

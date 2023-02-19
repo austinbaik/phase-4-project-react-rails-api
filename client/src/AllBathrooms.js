@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 
+
 function AllBathrooms({allToilets}) {
 
 console.log('arr in allbath', allToilets)
@@ -11,6 +12,14 @@ console.log('arr in allbath', allToilets)
         <div>
 
             PLACEHOLDER
+
+            {allToilets.map((toilet)=> {
+
+                return(
+                    <div>  {toilet.id}  </div>
+                )})}
+
+
             {/* 
             <Link to={`/brands/${brand.id}`} brand={brand}>
                 
