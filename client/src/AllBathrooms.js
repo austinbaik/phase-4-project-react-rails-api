@@ -4,21 +4,21 @@ import ToiletCard from "./ToiletCard";
 
 
 
-function AllBathrooms({allToilets}) {
+function AllBathrooms({ allToilets }) {
 
-console.log('arr in allbath', allToilets)
+    console.log('arr in allbath', allToilets)
 
     return (
 
         <div>
 
-            PLACEHOLDER
+            <h1>   Explore Bathrooms    </h1>
+            {allToilets.map((toilet) => {
 
-            {allToilets.map((toilet)=> {
-
-                return(
-                    <ToiletCard toilet={toilet}/>
-                )})}
+                return (
+                    <ToiletCard toilet={toilet} />
+                )
+            })}
 
 
             {/* 

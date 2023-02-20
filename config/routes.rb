@@ -17,4 +17,6 @@ Rails.application.routes.draw do
 
   get "/alltoilets", to: "bathrooms#show"
 
+  post "/addreview", to: "reviews#create"
+
 end
