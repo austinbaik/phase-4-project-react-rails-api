@@ -12,7 +12,7 @@ class BathroomsController < ApplicationController
       end
 
 
-      def show 
+      def index 
         bathrooms = Bathroom.all 
         render json: bathrooms 
       end

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  
+  resources :bathrooms, only: [:create, :index, :update]
+  resources :users do 
+    resources :reviews
+  end
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
@@ -15,8 +18,8 @@ Rails.application.routes.draw do
 
   post "/submit", to: "bathrooms#create"
 
-  get "/alltoilets", to: "bathrooms#show"
+  get "/bathrooms", to: "bathrooms#index"
 
-  post "/addreview", to: "reviews#create"
+  post "/reviews", to: "reviews#create"
 
 end

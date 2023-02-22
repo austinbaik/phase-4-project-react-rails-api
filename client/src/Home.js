@@ -6,11 +6,12 @@ import React, { useState, useEffect } from "react";
 
 
 function Home({ user, setToilets }) {
+  console.log('user', user)
 
   const validUser = user == true
 
   useEffect(() => {
-    fetch("/alltoilets")
+    fetch("/bathrooms")
       .then((r) => r.json())
       .then((allToilets) => setToilets(allToilets))
   }, [validUser])

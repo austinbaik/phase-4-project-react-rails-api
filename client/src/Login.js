@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 
 function Login({ setUser }) {
   const [username, setUsername] = useState("");
@@ -14,10 +16,28 @@ function Login({ setUser }) {
       body: JSON.stringify({ username, password }),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((user) => setUser(user))
+        // ***** When I get my User object back, I can serilize the reviews and bathrooms for this user in the response - set to state then, pass down the user object, user.reviews, user.bathrooms 
+
+        //HARD PART: when update reviews, 
+        //take user and create 
+        // complex state management 
+        // Redux? -- maybe, but unlikely - 
+        // link()
+        
       }
+      
     });
   }
+
+//   function link(){
+
+//     return(
+//     <Link to={'/alltoilets'} >
+//     <h2> Discover Other Toilets </h2>
+//     </Link>
+// )
+//   }
 
   return (
     <div>

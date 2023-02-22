@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 
-function ReviewForm() {
+function ReviewForm( {toiletInfo, user } ) {
 
     const [title, setTitle] = useState("");
     const [review, setReview] = useState("");
@@ -9,15 +9,21 @@ function ReviewForm() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        fetch("/submit", {
+        fetch("/reviews", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ title, review, rating }),
+            body: JSON.stringify({
+                title, 
+                review, 
+                rating,
+                bathroom_id :toiletInfo.id,
+                user_id : user.id
+            }),
         }).then((r) => {
             if (r.ok) {
-                r.json().then((review) => console.log(review));
+                r.json().then((review) => console.log('review', review));
             }
         });
     }

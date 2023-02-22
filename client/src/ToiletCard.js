@@ -1,5 +1,6 @@
 import ReviewForm from "./ReviewForm"
-function ToiletCard({ toilet }) {
+import ReviewCard from "./ReviewCard"
+function ToiletCard({ toilet, user }) {
 
 
     return (
@@ -17,11 +18,22 @@ leave the comments, too
             <br></br>
             Identifying Marker: {toilet.id_marker}
             <br></br>
+            Reviews:
+            {toilet.reviews.map((review) => {
+                return (
+
+                    <ReviewCard review={review} user={user}/>
+                  
+                )
+
+            })
+
+            }
             <h3>Add Your Review</h3>
-            <ReviewForm/>
+            <ReviewForm toiletInfo={toilet} user={user} />
 
         </div>
-        
+
     )
 
 
