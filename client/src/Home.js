@@ -22,9 +22,9 @@ function Home({ user, setToilets }) {
 
       <h1>Welcome, {user.username}!</h1>
 
-      <br></br>
+      {/* <br></br>
 
-      <MyToilets />
+      <MyToilets /> */}
       {/* show only toilets reviewed by the user */}
 
       <br></br>
@@ -32,15 +32,19 @@ function Home({ user, setToilets }) {
 
       {/* link to page with list of ALL bathrooms */}
       <Link to={'/alltoilets'} >
-        <h2> Discover Other Toilets </h2>
+        <h1> Discover Other Toilets </h1>
       </Link>
 
+      <br></br>
 
-      <NewBathroomForm />
+      <NewBathroomForm setToilets={setToilets} />
     </div>
-  } else {
+  }
+
+  else {
     return <h1>Please Login or Sign Up</h1>;
   }
+
 }
 
 export default Home;

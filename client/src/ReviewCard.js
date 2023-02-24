@@ -7,7 +7,21 @@ function ReviewCard({ review, user }) {
 
     //**NEED TO ADD CLIENT-SIDE VALIDATION */
 
-    const handleDeleteClick = () => console.log('delete clicked')
+    const handleDeleteClick = (e) => {
+        e.preventDefault();
+        fetch(`/users/${user.id}/reviews/${review.id}`, {
+            method: "DELETE"
+        }).then((r) => {
+            if (r.ok) {
+                r.json().then((bathroomResponse) => deleteResponse(bathroomResponse))
+            }
+        }
+        )
+    }
+
+    function deleteResponse(bathroomResponse) {
+        console.log(bathroomResponse);
+    }
 
     return (
         <div>
@@ -19,6 +33,23 @@ function ReviewCard({ review, user }) {
                 Rating: {review.rating}
                 <br></br>
                 Updated: {review.updated_at}
+
+                {user.id == review.user_id ? (
+                    <div>
+                        <button onClick={() => setIsEditing((isEditing) => !isEditing)}>
+                            <span role="img" aria-label="edit">
+                                ✏️
+                            </span>
+                        </button>
+
+                        <button onClick={handleDeleteClick}>
+                            <span role="img" aria-label="delete">
+                                🗑
+                            </span>
+                        </button>
+                    </div>
+                ) : (null)
+                }
             </ul>
 
             {isEditing ? (
@@ -27,30 +58,12 @@ function ReviewCard({ review, user }) {
                     id={review.id}
                     review={review.review}
                     rating={review.rating}
-                    // updateWatchToStateArr={updateWatchToStateArr}
+                    userID={user.id}
                     setIsEditing={setIsEditing}
                 />
             ) : (null
-
             )}
-            {user.id == review.user_id ? (
-                <div>
-                    <button onClick={() => setIsEditing((isEditing) => !isEditing)}>
-                        <span role="img" aria-label="edit">
-                            ✏️
-                        </span>
-                    </button>
-
-                    <button onClick={handleDeleteClick}>
-                        <span role="img" aria-label="delete">
-                            🗑
-                        </span>
-                    </button>
-                </div>
-            ) : (null)
-            }
-
-
+            
         </div >)
 }
 

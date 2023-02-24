@@ -1,27 +1,40 @@
 class ReviewsController < ApplicationController
-  
-    def create
+  def create
     review = Review.create(review_params)
     if review.valid?
-         #still don't quite understand this
-        #   Sessions work behind the scenes because of the bycrypt gem. We don't need to pass session within the render json, because session will be an object that connects with the application when you install the gem
-  
-        render json: review, status: :created
-      else
-        render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
-      end
+      bathroom = review.bathroom 
+      #still don't quite understand this
+      #   Sessions work behind the scenes because of the bycrypt gem. We don't need to pass session within the render json, because session will be an object that connects with the application when you install the gem
+
+      render json: bathroom, status: :created
+      #render 'bathroom' object, which includes all the reviews so we can update state easily
+    else
+      render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
+  # also need to authenticate!
+  def update
+    edit_params
+    review = Review.find(params[:id])
+    bathroom = review.bathroom
+    review.update(
+      review: params[:review],
+      rating: params[:rating],
+    )
+    #return the entire bathroom 
+    render json: bathroom, status: :ok
 
-#   def destroy 
+  end
 
-#     review = Review.find(:id)
-#     bathroom = review.bathroom.find_by(bathroom_id)
-#     review.destroy
-#     render json :bathroom     
+  # also need to authenticate!
+    def destroy
+      review = Review.find(params[:id])
+      bathroom = review.bathroom
+      review.destroy
+      render json: :bathroom, status: :ok
 
-#   end 
-#same principal for the update route 
+    end
 
 
   # *****how do I associate with the User who is creating the comment?******
@@ -32,4 +45,7 @@ class ReviewsController < ApplicationController
     params.permit(:title, :review, :rating, :user_id, :bathroom_id)
   end
 
+  def edit_params
+    params.permit(:review, :rating, :user_id, :id, :review)
+  end
 end

@@ -5,12 +5,13 @@ function EditReview({
     title,
     id,
     review,
-    rating
+    rating,
+    userID
 }) {
 
-    const [reviewTitle, setTitle] = useState( title );
-    const [updateReview, setReview] = useState( review );
-    const [updateRating, setUpdatedRating] = useState( rating );
+    // const [reviewTitle, setTitle] = useState(title);
+    const [updateReview, setReview] = useState(review);
+    const [updateRating, setUpdatedRating] = useState(rating);
 
     function handleReviewChange(e) {
         setReview(e.target.value)
@@ -20,10 +21,36 @@ function EditReview({
         setUpdatedRating(e.target.value)
     }
 
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        fetch(`/users/${userID}/reviews/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+
+                review: updateReview,
+                rating: updateRating
+
+            }),
+        }).then((r) => {
+            if (r.ok) {
+                r.json().then((bathroom) => apiReview(bathroom))
+            }
+        }
+        )
+    }
+
+    function apiReview(bathroom) {
+        console.log("success", bathroom);
+    }
+
+
     return (
 
-        // <form onSubmit={handleSubmit}>
-        <form>
+        <form onSubmit={handleSubmit}>
 
             <h2> Edit {title} </h2>
 

@@ -26,6 +26,9 @@ function ReviewForm( {toiletInfo, user } ) {
                 r.json().then((review) => console.log('review', review));
             }
         });
+        setTitle("")
+        setReview("")
+        setRating("")
     }
 
     return (

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function NewBathroomForm() {
+function NewBathroomForm( setToilets ) {
 
     const [address, setAddress] = useState("");
     const [id_marker, setIdMarker] = useState("");
@@ -18,8 +18,11 @@ function NewBathroomForm() {
             },
             body: JSON.stringify({ address, id_marker, gender, floor, access_info }),
         }).then((r) => {
-            if (r.ok) {
-                r.json().then((toilet) => console.log(toilet));
+            if (r.created) {
+                r.json().then((toilet) => {
+                    setToilets(allToilets => [...allToilets, toilet])}
+                    );
+                    console.log('Successfully added toilet')
             }
         });
     }
