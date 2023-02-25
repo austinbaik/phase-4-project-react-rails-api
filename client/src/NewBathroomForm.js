@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function NewBathroomForm( setToilets ) {
+function NewBathroomForm( {setToilets } ) {
 
     const [address, setAddress] = useState("");
     const [id_marker, setIdMarker] = useState("");
@@ -11,18 +11,20 @@ function NewBathroomForm( setToilets ) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        fetch("/submit", {
+        fetch("/bathrooms", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ address, id_marker, gender, floor, access_info }),
         }).then((r) => {
-            if (r.created) {
+            if (r.ok) {
+                console.log(r)
                 r.json().then((toilet) => {
-                    setToilets(allToilets => [...allToilets, toilet])}
+                    setToilets(allToilets => [...allToilets, toilet]) 
+                    console.log('Successfully added toilet', toilet)}
                     );
-                    console.log('Successfully added toilet')
+                    
             }
         });
     }

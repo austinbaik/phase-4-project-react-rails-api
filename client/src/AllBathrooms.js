@@ -4,7 +4,7 @@ import ToiletCard from "./ToiletCard";
 
 
 
-function AllBathrooms({ allToilets, user }) {
+function AllBathrooms({ allToilets, user, updateBathroomArray }) {
 
     console.log('arr in allbath', allToilets)
 
@@ -16,7 +16,7 @@ function AllBathrooms({ allToilets, user }) {
             {allToilets.map((toilet) => {
 
                 return (
-                    <ToiletCard toilet={toilet} user={user} />
+                    <ToiletCard toilet={toilet} user={user} updateBathroomArray={updateBathroomArray}/>
                 )
             })}
 

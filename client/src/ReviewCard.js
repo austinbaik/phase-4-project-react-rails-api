@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import EditReview from "./EditReview";
 
-function ReviewCard({ review, user }) {
+function ReviewCard({ review, user, updateBathroomArray }) {
 
     const [isEditing, setIsEditing] = useState(false);
 
@@ -59,7 +59,8 @@ function ReviewCard({ review, user }) {
                     review={review.review}
                     rating={review.rating}
                     userID={user.id}
-                    setIsEditing={setIsEditing}
+                    setIsEditing={setIsEditing} 
+                    updateBathroomArray={updateBathroomArray}
                 />
             ) : (null
             )}

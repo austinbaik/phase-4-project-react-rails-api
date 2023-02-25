@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   delete "/logout", to: "sessions#destroy"
 
-  post "/submit", to: "bathrooms#create"
+  # post "/submit", to: "bathrooms#create"
 
   get "/bathrooms", to: "bathrooms#index"
 

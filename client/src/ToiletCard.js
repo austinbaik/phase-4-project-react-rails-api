@@ -2,7 +2,7 @@ import ReviewForm from "./ReviewForm";
 import ReviewCard from "./ReviewCard";
 import './App.css';
 
-function ToiletCard({ toilet, user }) {
+function ToiletCard({ toilet, user, updateBathroomArray }) {
 
 
     return (
@@ -20,25 +20,29 @@ function ToiletCard({ toilet, user }) {
                 Avg Rating: {toilet.total_rating}<br></br>
                 <br></br>
                 Reviews:
+
+                <div>
+                    {toilet.reviews.map((review) => {
+                        return (
+
+                            <ReviewCard review={review} user={user} updateBathroomArray={updateBathroomArray} />
+
+                        )
+
+                    })
+
+                    }
+                    <div>
+                        <h4>Add Your Review</h4>
+                        <ReviewForm toiletInfo={toilet} user={user} />
+                    </div>
+                </div>
+
             </div>
-
-            {toilet.reviews.map((review) => {
-                return (
-
-                    <ReviewCard review={review} user={user} />
-
-                )
-
-            })
-
-            }
-            <h3>Add Your Review</h3>
-            <ReviewForm toiletInfo={toilet} user={user} />
 
         </div>
 
     )
-
 
 }
 

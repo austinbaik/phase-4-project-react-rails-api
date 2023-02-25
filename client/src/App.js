@@ -15,9 +15,25 @@ function App() {
   const [user, setUser] = useState(null);
   const [allToilets, setToilets] = useState([])
 
+
+  function updateBathroomArray(updatedToilet){
+
+    console.log("updatedToilet", updatedToilet.id)
+    console.log("allToilets", allToilets)
+    let updatedArrayofBathrooms = allToilets.map(wc => {
+      if (wc.id === updatedToilet.id){
+        return updatedToilet; 
+      } else {
+        return wc
+      }
+      
+    })
+    console.log("updatedArrayofBathrooms", updatedArrayofBathrooms)
+    setToilets(updatedArrayofBathrooms)
+
+  }
+
   console.log('toilets', allToilets)
-
-
     // auto-login:
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -26,6 +42,14 @@ function App() {
       }
     });
   }, []);
+
+  useEffect(() => {
+    fetch("/bathrooms")
+      .then((r) => r.json())
+      .then((allToilets) => setToilets(allToilets))
+  }, [])
+
+
 
   return (
     <>
@@ -41,7 +65,7 @@ function App() {
               path="/"
               element={user ? <Home user={user} /> : <Navigate to={"/signup"}
               />} /> */}
-              <Route path="/alltoilets" element={<AllBathrooms user={user} allToilets={allToilets}/>} />
+              <Route path="/alltoilets" element={<AllBathrooms user={user} allToilets={allToilets} updateBathroomArray={updateBathroomArray}/>} />
           </Routes>
 
       </main>

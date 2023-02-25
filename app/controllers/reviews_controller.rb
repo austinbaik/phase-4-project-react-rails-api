@@ -1,8 +1,10 @@
 class ReviewsController < ApplicationController
+  before_action :authorize
+
   def create
     review = Review.create(review_params)
     if review.valid?
-      bathroom = review.bathroom 
+      bathroom = review.bathroom
       #still don't quite understand this
       #   Sessions work behind the scenes because of the bycrypt gem. We don't need to pass session within the render json, because session will be an object that connects with the application when you install the gem
 
@@ -22,20 +24,21 @@ class ReviewsController < ApplicationController
       review: params[:review],
       rating: params[:rating],
     )
-    #return the entire bathroom 
-    render json: bathroom, status: :ok
-
+    if review.valid?
+      #return the entire bathroom
+      render json: bathroom, status: :ok
+    else
+      render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   # also need to authenticate!
-    def destroy
-      review = Review.find(params[:id])
-      bathroom = review.bathroom
-      review.destroy
-      render json: :bathroom, status: :ok
-
-    end
-
+  def destroy
+    review = Review.find(params[:id])
+    bathroom = review.bathroom
+    review.destroy
+    render json: :bathroom, status: :ok
+  end
 
   # *****how do I associate with the User who is creating the comment?******
 
@@ -47,5 +50,9 @@ class ReviewsController < ApplicationController
 
   def edit_params
     params.permit(:review, :rating, :user_id, :id, :review)
+  end
+
+  def authorize
+    return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
   end
 end

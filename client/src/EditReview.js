@@ -6,7 +6,8 @@ function EditReview({
     id,
     review,
     rating,
-    userID
+    userID, 
+    updateBathroomArray
 }) {
 
     // const [reviewTitle, setTitle] = useState(title);
@@ -37,15 +38,16 @@ function EditReview({
             }),
         }).then((r) => {
             if (r.ok) {
-                r.json().then((bathroom) => apiReview(bathroom))
+                r.json().then((bathroom) => updateBathroomArray(bathroom))
+                // console.log("success", bathroom)
             }
         }
         )
     }
 
-    function apiReview(bathroom) {
-        console.log("success", bathroom);
-    }
+    // function apiReview(bathroom) {
+    //     console.log("success", bathroom);
+    // }
 
 
     return (
