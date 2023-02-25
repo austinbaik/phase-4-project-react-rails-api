@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function NewBathroomForm( {setToilets } ) {
 
+    const navigate = useNavigate();
     const [address, setAddress] = useState("");
     const [id_marker, setIdMarker] = useState("");
     const [gender, setGender] = useState("");
@@ -26,6 +28,8 @@ function NewBathroomForm( {setToilets } ) {
                     );
                     
             }
+            navigate("/alltoilets");
+
         });
     }
 

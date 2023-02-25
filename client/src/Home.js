@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
 
-function Home({ user, setToilets }) {
+function Home({ user, setToilets, updateBathroomArray }) {
   console.log('user', user)
 
   // const validUser = user == true
@@ -31,7 +31,7 @@ function Home({ user, setToilets }) {
 
       <br></br>
 
-      <NewBathroomForm setToilets={setToilets} />
+      <NewBathroomForm setToilets={setToilets} updateBathroomArray={updateBathroomArray}/>
     </div>
   }
 

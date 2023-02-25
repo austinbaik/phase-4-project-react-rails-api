@@ -35,9 +35,8 @@ class ReviewsController < ApplicationController
   # also need to authenticate!
   def destroy
     review = Review.find(params[:id])
-    bathroom = review.bathroom
     review.destroy
-    render json: :bathroom, status: :ok
+    render json: review.bathroom, status: :ok
   end
 
   # *****how do I associate with the User who is creating the comment?******

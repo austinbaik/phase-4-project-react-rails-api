@@ -34,7 +34,7 @@ function ToiletCard({ toilet, user, updateBathroomArray }) {
                     }
                     <div>
                         <h4>Add Your Review</h4>
-                        <ReviewForm toiletInfo={toilet} user={user} />
+                        <ReviewForm toiletInfo={toilet} user={user} updateBathroomArray={updateBathroomArray} />
                     </div>
                 </div>
 

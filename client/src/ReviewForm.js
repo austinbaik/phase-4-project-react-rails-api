@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 
-function ReviewForm( {toiletInfo, user } ) {
+function ReviewForm( {toiletInfo, user, updateBathroomArray } ) {
 
     const [title, setTitle] = useState("");
     const [review, setReview] = useState("");
@@ -23,7 +23,7 @@ function ReviewForm( {toiletInfo, user } ) {
             }),
         }).then((r) => {
             if (r.ok) {
-                r.json().then((review) => console.log('review', review));
+                r.json().then((review) => updateBathroomArray(review));
             }
         });
         setTitle("")

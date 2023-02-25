@@ -7,6 +7,7 @@ function EditReview({
     review,
     rating,
     userID, 
+    setIsEditing,
     updateBathroomArray
 }) {
 
@@ -39,8 +40,9 @@ function EditReview({
         }).then((r) => {
             if (r.ok) {
                 r.json().then((bathroom) => updateBathroomArray(bathroom))
-                // console.log("success", bathroom)
             }
+                    
+            setIsEditing(false)
         }
         )
     }
