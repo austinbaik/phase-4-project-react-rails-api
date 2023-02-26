@@ -26,73 +26,70 @@ function NewBathroomForm( {setToilets } ) {
                     setToilets(allToilets => [...allToilets, toilet]) 
                     console.log('Successfully added toilet', toilet)}
                     );
-                    
+                                navigate("/alltoilets");
+
+            } else {
+                console.log("new bathroom error response", r)
             }
-            navigate("/alltoilets");
 
         });
     }
 
     return (
-        <div>
+        <div >
+            <h2 align='center'> Add Bathroom: </h2>
             <form onSubmit={handleSubmit}>
-                <h1>Add Bathroom</h1>
-                <label htmlFor="Address">Address</label>
-                <input
+                <div>
+                <label htmlFor="Address" >Address</label>
+                <input 
                     type="text"
                     id="address"
                     autoComplete="off"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
+                    placeholder="Enter Street Address"
                 />
-                <br>
-                </br>
                 <label htmlFor="id_marker">Identifying Marker</label>
                 <input
-                    type="id_marker"
+                    type="text"
                     id="id_marker"
                     autoComplete="off"
                     value={id_marker}
                     onChange={(e) => setIdMarker(e.target.value)}
+                    placeholder="Include Easily Identifying Marker"
                 />
-                <br>
-                </br>
+          
                 <label htmlFor="gender">Gender</label>
                 <input
-                    type="gender"
+                    type="text"
                     id="gender"
                     autoComplete="off"
                     value={gender}
                     onChange={(e) => setGender(e.target.value)}
                 />
 
-                <br>
-                </br>
                 <label htmlFor="floor">Floor</label>
                 <input
-                    type="floor"
+                    type="text"
                     id="floor"
                     autoComplete="off"
                     value={floor}
                     onChange={(e) => setFloor(e.target.value)}
+                    placeholder="i.e. 4th Floor"
                 />
-
-                <br>
-                </br>
 
                 <label htmlFor="access_info">Access Info</label>
                 <input
-                    type="access_info"
+                    type="text"
                     id="access_info"
                     autoComplete="off"
                     value={access_info}
                     onChange={(e) => setAccessInfo(e.target.value)}
+                    placeholder="i.e. Door Code or Employee can open door"
                 />
 
-                <br></br>
-
-
-                <button type="submit">Submit</button>
+                <button type="submit">Submit</button> 
+                </div>
             </form>
         </div>
     );

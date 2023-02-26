@@ -1,6 +1,88 @@
-# Project Template: React/Rails API
+
+
+# SF Bathroom Share App 
+
+
+## Phase 4 Ruby on Rails Project 
+
+The backend is built with Ruby on Rails, and the front-end is built using a standard React framework.
+
 
 ## Description
+
+This is a limited functionality MVP application that allows registered users to add bathroom information in the city of San Francisco. Users also have the ability to add reviews of the bathrooms. 
+
+
+## How to Start: 
+
+From the application file directory, you can run the follow command: 
+ 
+
+rails s , to start the Rails server &&
+npm -start --prefix client , to star the front-end client 
+
+
+### Front-end Component Structure & Hierarcy: 
+
+App.js 
+  _
+    NavBar.js
+  _
+    Home.js 
+      _
+        NewBathroomForm.js
+  _
+    AllBathrooms.js
+      _
+        ToiletCard.js
+          _
+            ReviewCard.js
+              _
+                EditReview.js
+          _
+            ReviewForm.js
+  _
+    Log-in.js
+  _
+    SignUp.js
+
+
+## General Application Features: 
+
+The main page prompts users to log-in or sign-up for to use the application. 
+
+Upon successful sign-in to the application, the Home page welcomes the user and displays a link to see all the user-submitted bathrooms for perusal, and a form to submit a new bathroom. 
+
+At application load time, the app calls the API for an array of objects that include the bathroom and review information. 
+
+At Sign-up or Log-in, an API call is made to create the user and or log-in the user. 
+
+**Note: All CRUD actions on the application are sent to the server and state is locally updated. 
+
+
+
+## Three models: 
+
+User 
+Bathroom 
+Review 
+
+Attributes can be found in the Schema file 
+
+
+## User Sign-up and Password Management: 
+
+User sign-up and password hashing is managed via the Ruby gem 'bcrypt', which can be found in the Gemfile. 
+
+
+
+
+
+
+
+
+
+
 
 This project is scaffolded so that you can build a React frontend and Rails
 backend together, and easily deploy them to Render.
@@ -284,68 +366,4 @@ service:
 brew services start postgresql
 ```
 
-### Set Up a Render Account
 
-You can sign up for a free account at
-[https://dashboard.render.com/register][Render signup]. We recommend that you
-sign up using GitHub as that will make it a little easier for you to connect
-Render to your GitHub account. The instructions below assume you've done that.
-
-[Render signup]: https://dashboard.render.com/register
-
-Once you've completed the signup process, you will be taken to the Render
-dashboard. In order to connect Render to your GitHub account, you'll need to
-click the "New Web Service" button in the "Web Services" box. On the next page,
-you will see a GitHub heading on the right side and below that a link labeled
-"Connect account". (If you didn't sign up using GitHub, it will say "Connect
-account" instead.) Click that link, then in the modal that appears click
-"Install." You should then be taken back to the "Create a New Web Service" page,
-which should now show a list of your GitHub repos. We won't actually create a
-web service just yet so you are free to navigate away from the page at this
-point.
-
-Next, we'll set up a PostgreSQL instance. Click the "New +" button at the top of
-the page and select "PostgreSQL". Enter a name for your PostgreSQL instance. The
-remaining fields can be left as is. Click "Create Database" at the bottom of the
-page. You should now be all set to follow the steps in the "Deploying" section.
-
-## Troubleshooting
-
-If you ran into any errors along the way, here are some things you can try to
-troubleshoot:
-
-- If you're on a Mac and got a server connection error when you tried to run
-  `rails db:create`, one option for solving this problem for Mac users is to
-  install the Postgres app. To do this, first uninstall `postgresql` by running
-  `brew remove postgresql`. Next, download the app from the
-  [Postgres downloads page][] and install it. Launch the app and click
-  "Initialize" to create a new server. You should now be able to run
-  `rails db:create`.
-
-- If you're using WSL and got the following error running `rails db:create`:
-
-  ```txt
-  PG::ConnectionBad: FATAL:  role "yourusername" does not exist
-  ```
-
-  The issue is that you did not create a role in Postgres for the default user
-  account. Check [this video](https://www.youtube.com/watch?v=bQC5izDzOgE) for
-  one possible fix.
-
-- If your app failed to deploy at the build stage, make sure your local
-  environment is set up correctly by following the steps at the beginning of
-  this lesson. Check that you have the latest versions of Ruby and Bundler, and
-  ensure that PostgreSQL was installed successfully.
-
-- If you deployed successfully, but you ran into issues when you visited the
-  site, make sure you migrated and seeded the database. Also, make sure that
-  your application works locally and try to debug any issues on your local
-  machine before re-deploying. You can also check the deployment log on the
-  app's page in the Render dashboard.
-
-[postgres downloads page]: https://postgresapp.com/downloads.html
-
-## Resources
-
-- [Getting Started with Ruby on Rails on Render](https://render.com/docs/deploy-rails)
-- [Render Databases Guide](https://render.com/docs/databases)

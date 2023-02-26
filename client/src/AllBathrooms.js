@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+// import { Link } from "react-router-dom";
 import ToiletCard from "./ToiletCard";
 
 
@@ -13,13 +13,12 @@ function AllBathrooms({ allToilets, user, updateBathroomArray }) {
         <div>
 
             <h1>   Explore Bathrooms    </h1>
-            {allToilets.map((toilet) => {
-
+            <ul>{allToilets.map((toilet) => {
                 return (
-                    <ToiletCard toilet={toilet} user={user} updateBathroomArray={updateBathroomArray}/>
+                    <ToiletCard key={toilet.id} toilet={toilet} user={user} updateBathroomArray={updateBathroomArray}/>
                 )
             })}
-
+</ul>
 
             {/* 
             <Link to={`/brands/${brand.id}`} brand={brand}>

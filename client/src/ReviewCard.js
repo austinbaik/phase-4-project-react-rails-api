@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import EditReview from "./EditReview";
 
 function ReviewCard({ review, user, updateBathroomArray }) {
@@ -23,7 +23,7 @@ function ReviewCard({ review, user, updateBathroomArray }) {
     
     return (
         <div>
-            <ul>
+            <ul key={review.id}> 
                 Title: {review.title}
                 <br></br>
                 Review: {review.review}
@@ -32,7 +32,7 @@ function ReviewCard({ review, user, updateBathroomArray }) {
                 <br></br>
                 Updated: {review.updated_at}
 
-                {user.id == review.user_id ? (
+                {user.id === review.user_id ? (
                     <div>
                         <button onClick={() => setIsEditing((isEditing) => !isEditing)}>
                             <span role="img" aria-label="edit">

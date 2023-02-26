@@ -48,7 +48,7 @@ function Login({ setUser }) {
         />
         <label htmlFor="password">Password</label>
         <input
-          type="password"
+          type="text"
           id="password"
           autoComplete="current-password"
           value={password}

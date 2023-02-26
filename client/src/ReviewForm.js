@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 
 function ReviewForm( {toiletInfo, user, updateBathroomArray } ) {
@@ -35,9 +35,9 @@ function ReviewForm( {toiletInfo, user, updateBathroomArray } ) {
         <div>
             <form onSubmit={handleSubmit}>
 
-                <label htmlFor="title">title</label>
+                <label htmlFor="title">Title</label>
                 <input
-                    type="title"
+                    type="text"
                     id="title"
                     autoComplete="off"
                     value={title}
@@ -45,18 +45,18 @@ function ReviewForm( {toiletInfo, user, updateBathroomArray } ) {
                 />
                 <br></br>
 
-                <label htmlFor="review">review</label>
+                <label htmlFor="review">Review</label>
                 <input
-                    type="review"
+                    type="text"
                     id="review"
                     autoComplete="off"
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
                 />
                 <br></br>
-                <label htmlFor="rating">rating</label>
+                <label htmlFor="rating">Rating</label>
                 <input
-                    type="rating"
+                    type="text"
                     id="rating"
                     autoComplete="off"
                     value={rating}

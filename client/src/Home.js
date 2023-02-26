@@ -1,8 +1,8 @@
 import NewBathroomForm from "./NewBathroomForm";
 // import AllBathrooms from "./AllBathrooms";
-import MyToilets from "./MyToilets";
+// import MyToilets from "./MyToilets";
 import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 
 function Home({ user, setToilets, updateBathroomArray }) {
@@ -12,21 +12,15 @@ function Home({ user, setToilets, updateBathroomArray }) {
 
   if (user) {
 
-    return <div>
+    return <div >
 
-      <h1>Welcome, {user.username}!</h1>
-
-      {/* <br></br>
-
-      <MyToilets /> */}
-      {/* show only toilets reviewed by the user */}
+      <h1 align='center' >Welcome, {user.username}!</h1>
 
       <br></br>
 
-
       {/* link to page with list of ALL bathrooms */}
       <Link to={'/alltoilets'} >
-        <h1> Discover Other Toilets </h1>
+        <h2 align='center'> Find a Toilet </h2>
       </Link>
 
       <br></br>
@@ -36,7 +30,16 @@ function Home({ user, setToilets, updateBathroomArray }) {
   }
 
   else {
-    return <h1>Please Login or Sign Up</h1>;
+    return <div align='center'>
+      
+      <h4 >Please Login or Sign Up</h4>
+
+      <img src="https://i.ebayimg.com/images/g/KJ0AAOSwf7Ja-ggx/s-l500.jpg"></img>
+
+
+
+
+    </div>;
   }
 
 }

@@ -20,6 +20,8 @@ function SignUp({ setUser }) {
     }).then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
+      } else {
+        console.log("r", r)
       }
     });
   }
@@ -27,7 +29,7 @@ function SignUp({ setUser }) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <h1>Sign Up</h1>
+        <h2>Sign Up</h2>
         <label htmlFor="username">Username</label>
         <input
           type="text"
@@ -38,7 +40,7 @@ function SignUp({ setUser }) {
         />
         <label htmlFor="password">Password</label>
         <input
-          type="password"
+          type="text"
           id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -46,7 +48,7 @@ function SignUp({ setUser }) {
         />
         <label htmlFor="password">Password Confirmation</label>
         <input
-          type="password"
+          type="text"
           id="password_confirmation"
           value={passwordConfirmation}
           onChange={(e) => setPasswordConfirmation(e.target.value)}
