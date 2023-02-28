@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import Error from './Error.js'
 
-
-function ReviewForm( {toiletInfo, user, updateBathroomArray } ) {
+function ReviewForm({ toiletInfo, user, updateBathroomArray }) {
 
     const [title, setTitle] = useState("");
     const [review, setReview] = useState("");
     const [rating, setRating] = useState("");
+    const [errors, setErrors] = useState([]);
+
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -15,22 +17,25 @@ function ReviewForm( {toiletInfo, user, updateBathroomArray } ) {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                title, 
-                review, 
+                title,
+                review,
                 rating,
-                bathroom_id :toiletInfo.id,
-                user_id : user.id
+                bathroom_id: toiletInfo.id,
+                user_id: user.id
             }),
         }).then((r) => {
             if (r.ok) {
                 r.json().then((review) => updateBathroomArray(review));
+                setTitle("")
+                setReview("")
+                setRating("")
+            } else {
+                r.json().then((err) => setErrors(err.errors))
             }
         });
-        setTitle("")
-        setReview("")
-        setRating("")
-    }
 
+    }
+    console.log("errors in review form ", errors)
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -42,6 +47,7 @@ function ReviewForm( {toiletInfo, user, updateBathroomArray } ) {
                     autoComplete="off"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
+
                 />
                 <br></br>
 
@@ -61,10 +67,24 @@ function ReviewForm( {toiletInfo, user, updateBathroomArray } ) {
                     autoComplete="off"
                     value={rating}
                     onChange={(e) => setRating(e.target.value)}
+                    placeholder="Worst 1 - Best 5"
                 />
                 <br></br>
 
                 <button type="submit">Submit</button>
+
+
+                <div>
+                    {errors.map((err) => (
+                        <Error key={err} err={err} />
+                    )
+                    )}
+                </div>
+
+
+
+
+
             </form>
 
         </div>

@@ -14,7 +14,9 @@ function ReviewCard({ review, user, updateBathroomArray }) {
         }).then((r) => {
             if (r.ok) {
                 r.json().then((bathroomResponse) => updateBathroomArray(bathroomResponse))
-            }
+            } else {
+                r.json().then((err) => console.log(err))
+               }
         }
         )
     }
@@ -32,7 +34,7 @@ function ReviewCard({ review, user, updateBathroomArray }) {
                 <br></br>
                 Updated: {review.updated_at}
 
-                {user.id === review.user_id ? (
+                {(user.id || user) === review.user_id ? (
                     <div>
                         <button onClick={() => setIsEditing((isEditing) => !isEditing)}>
                             <span role="img" aria-label="edit">

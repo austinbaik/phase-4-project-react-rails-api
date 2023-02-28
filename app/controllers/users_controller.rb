@@ -7,9 +7,10 @@ class UsersController < ApplicationController
   def create
     user = User.create(user_params)
     if user.valid?
+      session[:user_id] = user.id #still don't quite understand this
       render json: user, status: :created
     else
-      render json: { errors: user.errors }, status: :unprocessable_entity
+      render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -31,7 +32,11 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :password_confirmation)
+
+
+     params.permit(:username, :password, :password_confirmation)
+    
+    # params.require(:user).permit(:username, :password, :password_confirmation)
     #permit allows for key utilization; require mandates that parameter exists --> bc goes through User Controller
   end
 end

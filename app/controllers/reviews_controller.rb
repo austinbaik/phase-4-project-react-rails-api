@@ -5,6 +5,9 @@ class ReviewsController < ApplicationController
     review = Review.create(review_params)
     if review.valid?
       bathroom = review.bathroom
+
+      bathroom.calc_rating
+
       #still don't quite understand this
       #   Sessions work behind the scenes because of the bycrypt gem. We don't need to pass session within the render json, because session will be an object that connects with the application when you install the gem
 
@@ -26,6 +29,7 @@ class ReviewsController < ApplicationController
     )
     if review.valid?
       #return the entire bathroom
+      bathroom.calc_rating
       render json: bathroom, status: :ok
     else
       render json: { errors: review.errors.full_messages }, status: :unprocessable_entity

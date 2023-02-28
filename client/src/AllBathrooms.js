@@ -15,10 +15,10 @@ function AllBathrooms({ allToilets, user, updateBathroomArray }) {
             <h1>   Explore Bathrooms    </h1>
             <ul>{allToilets.map((toilet) => {
                 return (
-                    <ToiletCard key={toilet.id} toilet={toilet} user={user} updateBathroomArray={updateBathroomArray}/>
+                    <ToiletCard key={toilet.id} toilet={toilet} user={user} updateBathroomArray={updateBathroomArray} />
                 )
             })}
-</ul>
+            </ul>
 
             {/* 
             <Link to={`/brands/${brand.id}`} brand={brand}>

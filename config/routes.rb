@@ -18,12 +18,12 @@ Rails.application.routes.draw do
 
   # post "/submit", to: "bathrooms#create"
 
-  get "/bathrooms", to: "bathrooms#index"
+  # get "/bathrooms", to: "bathrooms#index"
 
   post "/reviews", to: "reviews#create"
 
-  patch  "/users/:user_id/reviews/:id", to:  "reviews#update"
+  # patch  "/users/:user_id/reviews/:id", to:  "reviews#update"
 
-  delete "/users/:user_id/reviews/:id", to: "review#destroy"
+  # delete "/users/:user_id/reviews/:id", to: "review#destroy"
 
 end

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Error from './Error.js'
 
 
 function Login({ setUser }) {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -18,21 +20,24 @@ function Login({ setUser }) {
     }).then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user))
-        // ***** When I get my User object back, I can serilize the reviews and bathrooms for this user in the response - set to state then, pass down the user object, user.reviews, user.bathrooms 
-
+          // ***** When I get my User object back, I can serilize the reviews and bathrooms for this user in the response - set to state then, pass down the user object, user.reviews, user.bathrooms 
+          .then(navigate("/"));
+      } else {
+       r.json().then((err) => setErrors(err))
       }
-      navigate("/");
+
+
     });
   }
 
-//   function link(){
+  //   function link(){
 
-//     return(
-//     <Link to={'/alltoilets'} >
-//     <h2> Discover Other Toilets </h2>
-//     </Link>
-// )
-//   }
+  //     return(
+  //     <Link to={'/alltoilets'} >
+  //     <h2> Discover Other Toilets </h2>
+  //     </Link>
+  // )
+  //   }
 
   return (
     <div>
@@ -55,6 +60,12 @@ function Login({ setUser }) {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit">Login</button>
+
+        <div>
+          
+          <errors>{errors.error}</errors>
+          
+         </div>
       </form>
     </div>
   );

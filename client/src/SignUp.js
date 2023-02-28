@@ -1,9 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Error from './Error.js'
 
 function SignUp({ setUser }) {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [errors, setErrors] = useState([]);
+
+  console.log(errors);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -19,9 +25,10 @@ function SignUp({ setUser }) {
       }),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((user) => setUser(user))
+          .then(navigate("/"));
       } else {
-        console.log("r", r)
+        r.json().then((err) => setErrors(err.errors))
       }
     });
   }
@@ -55,6 +62,13 @@ function SignUp({ setUser }) {
           autoComplete="current-password"
         />
         <button type="submit">Sign Up</button>
+
+        <div>
+            {errors.map((err) => (
+              <Error key={err} err={err} />
+            )
+            )}
+        </div>
       </form>
     </div>
   );
