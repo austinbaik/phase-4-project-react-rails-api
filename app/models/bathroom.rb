@@ -8,7 +8,7 @@ class Bathroom < ApplicationRecord
 
   def calc_rating
     if self.reviews.count(:rating) == 0
-      return self.total_rating
+      return self.total_rating = nil 
     else
       sum = self.reviews.sum(:rating)
       count = self.reviews.count(:rating)

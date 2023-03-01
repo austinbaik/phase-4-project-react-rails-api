@@ -39,7 +39,9 @@ class ReviewsController < ApplicationController
   # also need to authenticate!
   def destroy
     review = Review.find(params[:id])
+    bathroom = review.bathroom
     review.destroy
+    bathroom.calc_rating
     render json: review.bathroom, status: :ok
   end
 

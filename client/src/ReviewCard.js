@@ -21,8 +21,6 @@ function ReviewCard({ review, user, updateBathroomArray }) {
         )
     }
 
-  
-    
     return (
         <div>
             <ul key={review.id}> 

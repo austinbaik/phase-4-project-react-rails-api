@@ -13,7 +13,7 @@ import "./Page.css"
 
 
 function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState();
   const [allToilets, setToilets] = useState([])
 
   function updateBathroomArray(updatedToilet) {
