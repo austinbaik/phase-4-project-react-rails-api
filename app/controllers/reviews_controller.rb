@@ -2,7 +2,8 @@ class ReviewsController < ApplicationController
   before_action :authorize
 
   def create
-    review = Review.create(review_params)
+    user = User.find(session[:user_id])
+    review = user.reviews.create(review_params)
     if review.valid?
       bathroom = review.bathroom
 
@@ -21,7 +22,8 @@ class ReviewsController < ApplicationController
   # also need to authenticate!
   def update
     edit_params
-    review = Review.find(params[:id])
+    user = User.find(session[:user_id])
+    review = user.reviews.find(params[:id])
     bathroom = review.bathroom
     review.update(
       review: params[:review],
@@ -38,7 +40,8 @@ class ReviewsController < ApplicationController
 
   # also need to authenticate!
   def destroy
-    review = Review.find(params[:id])
+    user = User.find(session[:user_id])
+    review = user.reviews.find(params[:id])
     bathroom = review.bathroom
     review.destroy
     bathroom.calc_rating
@@ -50,11 +53,11 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.permit(:title, :review, :rating, :user_id, :bathroom_id)
+    params.permit(:title, :review, :rating, :bathroom_id)
   end
 
   def edit_params
-    params.permit(:review, :rating, :user_id, :id, :review)
+    params.permit(:review, :rating, :id, :review)
   end
 
   def authorize

@@ -4,12 +4,15 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
+  get "/highlyreviewedbathrooms/:number", to: "bathrooms#show_many_reviews"
+
   resources :users do
     resources :bathrooms
   end
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
- 
+
+  
 
   post "/signup", to: "users#create"
 
@@ -33,3 +36,4 @@ Rails.application.routes.draw do
   # delete "/users/:user_id/reviews/:id", to: "review#destroy"
 
 end
+

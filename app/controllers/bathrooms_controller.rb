@@ -5,6 +5,14 @@ class BathroomsController < ApplicationController
 
 
 
+  def show_many_reviews 
+#localhost:3000/highlyreviewedbathrooms/{2}
+# where the suffix is the number of reviews or more 
+  bathrooms = Bathroom.all 
+  return_bathrooms = bathrooms.select {|b| b.reviews.count >= params[:number].to_i} 
+  render json: return_bathrooms 
+  end 
+
   def create
     bathroom = Bathroom.create!(toilet_params)
     render json: bathroom, status: :created
