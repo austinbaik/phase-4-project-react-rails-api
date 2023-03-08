@@ -6,7 +6,8 @@ import ToiletCard from "./ToiletCard";
 
 function AllBathrooms({ allToilets, user, updateBathroomArray }) {
 
-    console.log('arr in allbath', allToilets)
+    // console.log('allToilets Array in AllBathroom', allToilets)
+    // console.log('userToilets', user.toilets)
 
     return (
 

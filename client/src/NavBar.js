@@ -29,7 +29,11 @@ function NavBar({ user, setUser }) {
         </button>
 
         {user ? (
-          <button onClick={handleLogoutClick}>Logout</button>
+          <>
+          <button> <Link to="/mytoilets">My Toilets</Link>  </button>
+          <button onClick={handleLogoutClick}> Logout </button>
+          </>
+
         ) : (
           <>
             <button>

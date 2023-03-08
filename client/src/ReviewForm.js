@@ -25,17 +25,20 @@ function ReviewForm({ toiletInfo, user, updateBathroomArray }) {
             }),
         }).then((r) => {
             if (r.ok) {
-                r.json().then((review) => updateBathroomArray(review));
+                r.json().then((review) => updateBathroomArray(review, "add"), console.log("r", review));
                 setTitle("")
                 setReview("")
                 setRating("")
             } else {
                 r.json().then((err) => setErrors(err.errors))
             }
+            
         });
 
     }
-    console.log("errors in review form ", errors)
+
+    // console.log("errors in review form ", errors)
+
     return (
         <div>
             <form onSubmit={handleSubmit}>

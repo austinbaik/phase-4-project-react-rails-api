@@ -13,17 +13,20 @@ function ReviewCard({ review, user, updateBathroomArray }) {
             method: "DELETE"
         }).then((r) => {
             if (r.ok) {
-                r.json().then((bathroomResponse) => updateBathroomArray(bathroomResponse))
+                r.json().then((bathroomResponse) => updateBathroomArray(bathroomResponse, "delete"))
             } else {
                 r.json().then((err) => console.log(err))
-               }
+            }
         }
         )
     }
 
+    console.log("review", review)
+    console.log("user", user)
+
     return (
         <div>
-            <ul key={review.id}> 
+            <ul key={review.id}>
                 Title: {review.title}
                 <br></br>
                 Review: {review.review}
@@ -57,13 +60,13 @@ function ReviewCard({ review, user, updateBathroomArray }) {
                     review={review.review}
                     rating={review.rating}
                     userID={user.id}
-                    setIsEditing={setIsEditing} 
+                    setIsEditing={setIsEditing}
                     updateBathroomArray={updateBathroomArray}
-                    
+
                 />
             ) : (null
             )}
-            
+
         </div >)
 }
 

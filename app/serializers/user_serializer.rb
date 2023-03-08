@@ -1,6 +1,14 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :password_digest 
-  has_many :bathrooms, through: :reviews
+  attributes :id, :username, :toilets 
+  # has_many :bathrooms, through: :reviews
+
+  # make custom attributes method  
+  def toilets 
+    # byebug 
+    uniq_arr = object.bathrooms.uniq 
+#make the array unique 
+    return uniq_arr
+  end 
 
   # def reviewed_bathrooms 
   #   reviews = Review.all 

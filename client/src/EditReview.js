@@ -39,7 +39,7 @@ function EditReview({
             }),
         }).then((r) => {
             if (r.ok) {
-                r.json().then((bathroom) => updateBathroomArray(bathroom))
+                r.json().then((bathroom) => updateBathroomArray(bathroom, "edit"))
             }
                     
             setIsEditing(false)

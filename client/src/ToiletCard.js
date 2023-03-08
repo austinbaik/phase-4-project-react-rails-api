@@ -4,6 +4,26 @@ import './App.css';
 
 function ToiletCard({ toilet, user, updateBathroomArray }) {
 
+    // console.log("toilet at TC", toilet)
+
+    function renderReviews(t) { 
+        
+        if (t.reviews) {
+            return (
+                <div>  Reviews:
+                    {toilet.reviews.map((review) => {
+                        return (
+                            <ReviewCard key={review.id} review={review} user={user} updateBathroomArray={updateBathroomArray} />
+                        )
+                    })
+                    }
+                    <div>
+                        <h4>Add Your Review</h4>
+                        <ReviewForm toiletInfo={toilet} user={user} updateBathroomArray={updateBathroomArray} />
+                    </div>
+                </div>)}
+
+    }
 
     return (
 
@@ -15,19 +35,8 @@ function ToiletCard({ toilet, user, updateBathroomArray }) {
                 Access Info: {toilet.access_info}<br></br>
                 Avg Rating: {toilet.total_rating}<br></br>
                 <br></br>
-                Reviews:
-                <div>
-                    {toilet.reviews.map((review) => {
-                        return (
-                            <ReviewCard review={review} user={user} updateBathroomArray={updateBathroomArray} />
-                        )
-                    })
-                    }
-                    <div>
-                        <h4>Add Your Review</h4>
-                        <ReviewForm toiletInfo={toilet} user={user} updateBathroomArray={updateBathroomArray} />
-                    </div>
-                </div>
+                {renderReviews(toilet)}
+                
             </div>
         </div>
     )
